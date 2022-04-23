@@ -56,12 +56,13 @@
           width: 80%;
           outline: none;
           border: none;
+          border-color: $primary-red;
           padding-left: 10px;
-          border-radius: 3px;
+          // border-radius: 3px;
         }
 
         .btnSearch {
-          padding: 8px 20px;
+          padding: 7px 20px;
           color: $white;
           letter-spacing: 0.03em;
           background-color: $primary-red;

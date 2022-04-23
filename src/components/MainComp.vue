@@ -1,42 +1,41 @@
 <template>
   <main>
-        <FilmsComp :films="films"/>
+    <FilmsComp :films="films" :foundResults="foundResults" />
 
-        <SeriesComp :tvSeries="tvSeries"/>
+    <SeriesComp :tvSeries="tvSeries" :foundResults="foundResults" />
   </main>
 </template>
 
 <script>
-import FilmsComp from './partials/FilmsComp.vue'
-import SeriesComp from './partials/SeriesComp.vue'
+  import FilmsComp from './partials/FilmsComp.vue'
+  import SeriesComp from './partials/SeriesComp.vue'
 
-export default {
-  name: 'MainComp',
+  export default {
+    name: 'MainComp',
 
-  components: {
-    FilmsComp,
-    SeriesComp,
-  },
+    components: {
+      FilmsComp,
+      SeriesComp,
+    },
 
-  props: {
-    films: Array,
-    tvSeries: Array,
-  },
+    props: {
+      films: Array,
+      tvSeries: Array,
+      foundResults: Boolean,
+    },
 
-}
+  }
 </script>
 
 <style lang="scss">
-@import '../style/global.scss';
+  @import '../style/global.scss';
 
-main {
+  main {
     background-color: $main-gray;
     min-height: 90vh;
 
     div.sectionTitle {
-      display: flex;
-      justify-content: center;
-      font-family: sans-serif;
+      @include compileFlex (center, initial);
       color: $white;
       padding: 10px 0;
 
@@ -45,7 +44,7 @@ main {
         text-align: center;
 
       }
-      
+
       span {
         font-size: 0.9em;
         font-weight: bold;
@@ -55,7 +54,21 @@ main {
       }
     }
 
-    
-}
+    .containerCards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      max-width: 85%;
+      margin: 0 auto;
+      gap: 20px;
+      color: $white;
+    }
 
+  }
+
+  @media screen and (max-width: 490px) {
+    .containerCards {
+      width: 270px;
+    }
+    
+  }
 </style>

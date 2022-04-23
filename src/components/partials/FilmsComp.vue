@@ -1,13 +1,13 @@
 <template>
     <div id="films">
-        <div class="sectionTitle">
+        <div class="sectionTitle" v-if="foundResults">
             <h2>films</h2>
             <span>({{films.length}} risultati)</span>
         </div>
-        <ul>
+        <div class="containerCards">
             <CardComp v-for="film in films" :key="film.id" :title="film.title" :language="film.original_language"
                 :vote="film.vote_average" :overview="film.overview"/>
-        </ul>
+        </div>
     </div>
 </template>
 
@@ -22,6 +22,7 @@
 
         props: {
             films: Array,
+            foundResults: Boolean,
         },
 
         data() {
@@ -35,11 +36,6 @@
 </script>
 
 <style lang="scss">
+@import '../../style/global.scss';
 
-    ul {
-        list-style-type: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
 </style>

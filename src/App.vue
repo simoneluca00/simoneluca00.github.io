@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderComp @search="searchingElement"/>
-    <MainComp :films="films" :tvSeries="tvSeries"/>
+    <MainComp :films="films" :tvSeries="tvSeries" :foundResults="foundResults"/>
   </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
 
   data() {
     return {
+      foundResults: false,
       apiKey: "8298d794dad7d9a6a86bab321846d44b",
       searchText: "",
       films: [],
@@ -33,6 +34,7 @@ export default {
       this.searchText = text;
       this.searchText = this.searchText.replace(/\s/g, '+');
       
+      
       // chiamata API per films
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${this.searchText}`)
       .then((res)=> {
@@ -40,6 +42,7 @@ export default {
         console.log(this.films)   
       })
       .catch(err => console.error('Impossibile caricare i dati', err))
+      .finally(() => (this.foundResults = true))
 
       // chiamata API per serieTV
       axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${this.apiKey}&query=${this.searchText}`)
@@ -48,7 +51,11 @@ export default {
         console.log(this.tvSeries)   
       })
       .catch(err => console.error('Impossibile caricare i dati', err))
+      .finally(() => (this.foundResults = true))
+    
     }
+
+
   },
   
 }

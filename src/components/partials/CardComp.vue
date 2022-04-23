@@ -1,19 +1,21 @@
 <template>
-    <li class="card">
+    <div class="card">
         <p>Titolo:
             <strong>{{title}}</strong>     
         </p>
-        <p>Lingua originale:
-            <strong>{{language}}</strong>          
-        </p>
+        <div>Lingua originale:
+            <!-- <strong>{{language}}</strong>           -->
+            <img src="../../assets/img/it.png" alt="Italy flag" v-if="language == 'it'">
+            <img src="../../assets/img/gb.png" alt="UK flag" v-else-if="language == 'en'">
+        </div>
         <p>Voto:
             <strong>{{vote}}</strong>          
         </p>
 
-        <p>
-            <strong>{{overview}}</strong>          
+        <p class="overview">
+            {{overview}}          
         </p>
-    </li>
+    </div>
 </template>
 
 <script>
@@ -25,6 +27,7 @@
             language: String,
             vote: Number,
             overview: String,
+            foundResults: Boolean,
         },
 
         data() {
@@ -38,16 +41,29 @@
 </script>
 
 <style lang="scss">
-    li {
+@import '../../style/global.scss';
+
+    .card {
         border: 1px solid red;
-        width: calc((100% / 5 - 40px));
-        margin: 10px 20px;
         text-align: center;
-        height: 200px;
+        height: 300px;
         overflow-y: auto;
+        background-color: $black;
+
+        img {
+            vertical-align: middle;
+            width: 18px;
+            height: 14px;
+        }
 
         p {
             margin: 10px 0;
+        }
+
+        .overview {
+            padding:0 7px 0 20px;
+            text-align: start;
+            line-height: 1.4em;
         }
     }
 </style>

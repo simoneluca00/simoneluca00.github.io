@@ -1,14 +1,14 @@
 <template>
     <div id="tvSeries">
-        <div class="sectionTitle">
+        <div class="sectionTitle" v-if="foundResults">
             <h2>series</h2>
             <span>({{tvSeries.length}} risultati)</span>
         </div>
 
-        <ul>
+        <div class="containerCards">
             <CardComp v-for="item in tvSeries" :key="item.id" :title="item.name" :language="item.original_language"
                 :vote="item.vote_average" :overview="item.overview"/>
-        </ul>
+        </div>
     </div>
 </template>
 
@@ -23,6 +23,7 @@
 
         props: {
             tvSeries: Array,
+            foundResults: Boolean,
         },
 
         data() {
@@ -36,14 +37,10 @@
 </script>
 
 <style lang="scss">
+@import '../../style/global.scss';
+
     #tvSeries {
         margin-top: 30px;
 
-        ul {
-            list-style-type: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
     }
 </style>
