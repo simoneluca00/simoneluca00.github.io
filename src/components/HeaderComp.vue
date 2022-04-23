@@ -6,7 +6,7 @@
       <form action="">
         <input type="text" class="searchInput" placeholder="Cerca il tuo film preferito" v-model.trim="inputText">
 
-        <button type="submit" class="btnSearch" @click.prevent="$emit( 'performSearch', inputText )">
+        <button type="submit" class="btnSearch" @click.prevent="$emit( 'search', inputText )">
           Cerca
         </button>
       </form>
@@ -23,6 +23,12 @@
 
     components: {
       LogoComp,
+    },
+
+    data(){
+      return {
+        inputText: "",
+      }
     }
 
   }
@@ -36,7 +42,8 @@
     @include compileFlex (space-between, center);
 
     background-color: #000;
-    padding: 10px 25px;
+    padding: 0 25px;
+    height: 10vh;
 
     div#search {
       flex-basis: 25%;
@@ -60,6 +67,11 @@
           background-color: $primary-red;
           outline: none;
           border: none;
+
+          &:hover {
+            cursor: pointer;
+            opacity: 0.9;
+          }
         }
       }
     }
