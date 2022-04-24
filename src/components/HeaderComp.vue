@@ -25,7 +25,7 @@
       LogoComp,
     },
 
-    data(){
+    data() {
       return {
         inputText: "",
       }
@@ -36,7 +36,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../style/global.scss';
+  @import '../style/global.scss';
 
   header {
     @include compileFlex (space-between, center);
@@ -63,7 +63,7 @@
 
         .btnSearch {
           padding: 7px 20px;
-          color: $white;
+          color: $light-text;
           letter-spacing: 0.03em;
           background-color: $primary-red;
           outline: none;

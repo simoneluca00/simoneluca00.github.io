@@ -7,7 +7,7 @@
 
         <div class="containerCards">
             <CardComp v-for="item in tvSeries" :key="item.id" :title="item.name" :language="item.original_language"
-                :vote="item.vote_average" :overview="item.overview" :poster="item.poster_path"/>
+                :vote="item.vote_average" :overview="item.overview" :poster="item.poster_path" />
         </div>
     </div>
 </template>
@@ -37,7 +37,7 @@
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/global.scss';
+    @import '../../style/global.scss';
 
     #tvSeries {
         margin-top: 30px;

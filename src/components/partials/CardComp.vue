@@ -9,21 +9,27 @@
             </div>
 
             <div class="flip-card-back border-card">
-                <h2>{{title}}</h2>
+                <h2 v-if="poster != null">{{title}}</h2>
                 <div>Lingua originale:
-                    <img src="../../assets/img/it.png" alt="Italy flag" v-if="language == 'it'">
-                    <img src="../../assets/img/gb.png" alt="UK flag" v-else-if="language == 'en'">
-                    <strong v-else>{{language}}</strong>          
+                    <img src="../../assets/img/it.png" alt="Italian flag" v-if="language == 'it'">
+                    <img src="../../assets/img/en.png" alt="English flag" v-else-if="language == 'en'">
+                    <img src="../../assets/img/es.png" alt="Spanish flag" v-else-if="language == 'es'">
+                    <img src="../../assets/img/fr.png" alt="French flag" v-else-if="language == 'fr'">
+                    <img src="../../assets/img/de.png" alt="German flag" v-else-if="language == 'de'">
+                    <img src="../../assets/img/zh.png" alt="Chinese flag" v-else-if="language == 'zh'">
+                    <img src="../../assets/img/hi.png" alt="Indian flag" v-else-if="language == 'hi'">
+                    <img src="../../assets/img/tr.png" alt="Turkish flag" v-else-if="language == 'tr'">
+                    <strong v-else>{{language}}</strong>
                 </div>
 
-                <RatingComp :vote="vote"/>
+                <RatingComp :vote="vote" />
                 <!-- <p>Voto:
                     <strong>{{Math.ceil(vote)/2}}</strong> 
 
                 </p> -->
 
                 <p class="overview">
-                    {{overview}}          
+                    {{overview}}
                 </p>
             </div>
         </div>
@@ -31,7 +37,7 @@
 </template>
 
 <script>
-import RatingComp from './RatingComp.vue';
+    import RatingComp from './RatingComp.vue';
 
     export default {
         name: 'CardComp',
@@ -53,9 +59,9 @@ import RatingComp from './RatingComp.vue';
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/global.scss';
+    @import '../../style/global.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400;500;600;700&display=swap');
 
     .border-card {
         border: 2px solid $primary-red;
@@ -102,19 +108,19 @@ import RatingComp from './RatingComp.vue';
 
         div.missingPoster {
             @include w-h-100;
-            @include compileFlex(center,center);
+            @include compileFlex(center, center);
             background-color: $black;
-            color: $white;
+            color: $light-text;
         }
     }
 
     .flip-card-back {
         background-color: $black;
-        color: $white;
+        color: $light-text;
         overflow-y: auto;
         padding: 20px 10px;
         transform: rotateY(180deg);
-        
+
         img {
             vertical-align: middle;
             width: 18px;
@@ -130,18 +136,18 @@ import RatingComp from './RatingComp.vue';
         }
 
         .overview {
-            padding:0 7px 0 20px;
+            padding: 0 7px 0 20px;
             text-align: start;
             line-height: 1.4em;
         }
     }
 
-    .flip-card-back::-webkit-scrollbar{
+    .flip-card-back::-webkit-scrollbar {
         width: 10px;
     }
 
     .flip-card-back::-webkit-scrollbar-track {
-        background: $black;        
+        background: $black;
     }
 
     .flip-card-back::-webkit-scrollbar-thumb {
@@ -149,5 +155,4 @@ import RatingComp from './RatingComp.vue';
         border-radius: 16px;
         border: 3px solid $black;
     }
-
 </style>

@@ -25,10 +25,10 @@
     },
 
     methods: {
-      wela(){
+      wela() {
         for (let i = 0; i < this.films.length; i++) {
           console.log(this.films.vote_average)
-          
+
         }
       }
     }
@@ -46,7 +46,7 @@
 
     div.sectionTitle {
       @include compileFlex (center, initial);
-      color: $white;
+      color: $light-text;
       padding: 10px 0;
       margin-bottom: 20px;
 
@@ -72,7 +72,7 @@
       max-width: 85%;
       margin: 0 auto;
       // gap: 20px;
-      color: $white;
+      color: $light-text;
     }
 
   }
@@ -81,6 +81,6 @@
     .containerCards {
       width: 270px;
     }
-    
+
   }
 </style>
