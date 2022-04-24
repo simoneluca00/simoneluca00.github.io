@@ -1,13 +1,13 @@
 <template>
     <div id="tvSeries">
         <div class="sectionTitle" v-if="foundResults">
-            <h2>series</h2>
+            <h2>serie tv</h2>
             <span>({{tvSeries.length}} risultati)</span>
         </div>
 
         <div class="containerCards">
             <CardComp v-for="item in tvSeries" :key="item.id" :title="item.name" :language="item.original_language"
-                :vote="item.vote_average" :overview="item.overview"/>
+                :vote="item.vote_average" :overview="item.overview" :poster="item.poster_path"/>
         </div>
     </div>
 </template>

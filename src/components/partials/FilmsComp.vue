@@ -1,12 +1,12 @@
 <template>
     <div id="films">
         <div class="sectionTitle" v-if="foundResults">
-            <h2>films</h2>
+            <h2>film</h2>
             <span>({{films.length}} risultati)</span>
         </div>
         <div class="containerCards">
             <CardComp v-for="film in films" :key="film.id" :title="film.title" :language="film.original_language"
-                :vote="film.vote_average" :overview="film.overview"/>
+                :vote="film.vote_average" :overview="film.overview" :poster="film.poster_path" />
         </div>
     </div>
 </template>

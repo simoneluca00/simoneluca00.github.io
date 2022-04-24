@@ -33,11 +33,15 @@
   main {
     background-color: $main-gray;
     min-height: 90vh;
+    padding: 20px 0;
+    font-family: sans-serif;
 
     div.sectionTitle {
       @include compileFlex (center, initial);
       color: $white;
       padding: 10px 0;
+      margin-bottom: 20px;
+
 
       h2 {
         text-transform: uppercase;
