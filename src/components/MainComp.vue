@@ -24,6 +24,14 @@
       foundResults: Boolean,
     },
 
+    methods: {
+      wela(){
+        for (let i = 0; i < this.films.length; i++) {
+          console.log(this.films.vote_average)
+          
+        }
+      }
+    }
   }
 </script>
 
@@ -43,7 +51,7 @@
       margin-bottom: 20px;
 
 
-      h2 {
+      h1 {
         text-transform: uppercase;
         text-align: center;
 
@@ -54,16 +62,16 @@
         font-weight: bold;
         align-self: flex-end;
         margin-bottom: 4px;
-        margin: 0 0 5px 4px;
+        margin: 0 0 7px 4px;
       }
     }
 
     .containerCards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 20%));
       max-width: 85%;
       margin: 0 auto;
-      gap: 20px;
+      // gap: 20px;
       color: $white;
     }
 

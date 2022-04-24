@@ -62,10 +62,31 @@ export default {
 </script>
 
 <style lang="scss">
+@import './style/global.scss';
 
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: $black;
+}
+
+body::-webkit-scrollbar-thumb {
+  // background-color: $primary-red;
+      background-image:
+        linear-gradient(to bottom,
+            $black 0px,
+            $black 9.9vh,
+            $primary-red 9.9vh,
+            $primary-red 100%);
+  // border-radius: 20px;
+  border: 3px solid $black;
+}
 </style>

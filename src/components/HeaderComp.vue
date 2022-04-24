@@ -4,10 +4,10 @@
 
     <div id="search">
       <form action="">
-        <input type="text" class="searchInput" placeholder="Cerca il tuo film preferito" v-model.trim="inputText">
+        <input type="text" class="searchInput" placeholder="Cerca il tuo film preferito!" v-model.trim="inputText">
 
         <button type="submit" class="btnSearch" @click.prevent="$emit( 'search', inputText )">
-          Cerca
+          <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
         </button>
       </form>
     </div>
@@ -35,7 +35,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import '../style/global.scss';
 
   header {

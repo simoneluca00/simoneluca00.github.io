@@ -1,7 +1,7 @@
 <template>
     <div id="tvSeries">
         <div class="sectionTitle" v-if="foundResults">
-            <h2>serie tv</h2>
+            <h1>serie tv</h1>
             <span>({{tvSeries.length}} risultati)</span>
         </div>
 
@@ -36,7 +36,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/global.scss';
 
     #tvSeries {
