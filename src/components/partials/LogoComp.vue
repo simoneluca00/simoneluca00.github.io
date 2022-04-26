@@ -24,7 +24,7 @@
 
     span {
       align-self: flex-end;
-      color: $primary-red;
+      color: $primary-logo;
       font-size: 2.8em;
       font-family: 'Monoton', cursive;
     }

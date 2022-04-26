@@ -19,17 +19,17 @@
                     <img src="../../assets/img/zh.png" alt="Chinese flag" v-else-if="language == 'zh'">
                     <img src="../../assets/img/hi.png" alt="Indian flag" v-else-if="language == 'hi'">
                     <img src="../../assets/img/tr.png" alt="Turkish flag" v-else-if="language == 'tr'">
+                    <img src="../../assets/img/pt.png" alt="Portuguese flag" v-else-if="language == 'pt'">
                     <strong v-else>{{language}}</strong>
                 </div>
 
                 <RatingComp :vote="vote" />
-                <!-- <p>Voto:
-                    <strong>{{Math.ceil(vote)/2}}</strong> 
-
-                </p> -->
 
                 <p class="overview">
                     {{overview}}
+                </p>
+                <p class="overview">
+                    {{genresList}}
                 </p>
             </div>
         </div>
@@ -52,19 +52,26 @@
             vote: Number,
             overview: String,
             poster: String,
+            genresList: Array,
             foundResults: Boolean,
+        },
+
+        computed: {
+    
         },
 
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import '../../style/global.scss';
 
     @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400;500;600;700&display=swap');
 
     .border-card {
-        border: 2px solid $primary-red;
+        border: 2px solid; 
+        border-image-slice: 1;
+        border-image-source: $br-cards;  
     }
 
     .flip-card {
@@ -151,7 +158,7 @@
     }
 
     .flip-card-back::-webkit-scrollbar-thumb {
-        background-color: $main-gray;
+        background-color: $primary-logo;
         border-radius: 16px;
         border: 3px solid $black;
     }

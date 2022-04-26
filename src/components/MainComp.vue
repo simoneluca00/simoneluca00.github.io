@@ -1,8 +1,8 @@
 <template>
   <main>
-    <FilmsComp :films="films" :foundResults="foundResults" />
+    <FilmsComp :films="films" :foundResults="foundResults" :filmGenres="filmGenres" />
 
-    <SeriesComp :tvSeries="tvSeries" :foundResults="foundResults" />
+    <SeriesComp :tvSeries="tvSeries" :foundResults="foundResults" :tvSeriesGenres="tvSeriesGenres" />
   </main>
 </template>
 
@@ -15,23 +15,21 @@
 
     components: {
       FilmsComp,
-      SeriesComp,
+      SeriesComp
     },
 
     props: {
       films: Array,
       tvSeries: Array,
       foundResults: Boolean,
+      filmGenres: Array,
+      tvSeriesGenres: Array,
     },
 
-    methods: {
-      wela() {
-        for (let i = 0; i < this.films.length; i++) {
-          console.log(this.films.vote_average)
+    computed: {
 
-        }
-      }
-    }
+    },
+
   }
 </script>
 
@@ -39,7 +37,7 @@
   @import '../style/global.scss';
 
   main {
-    background-color: $main-gray;
+    background-image: $bg-main;
     min-height: 90vh;
     padding: 20px 0;
     font-family: sans-serif;
@@ -64,6 +62,10 @@
         margin-bottom: 4px;
         margin: 0 0 7px 4px;
       }
+
+      .results {
+        margin-left: -1px;
+      }
     }
 
     .containerCards {
@@ -73,6 +75,11 @@
       margin: 0 auto;
       // gap: 20px;
       color: $light-text;
+    }
+
+    div.selectGenreCont {
+      @include compileFlex(flex-start, center);
+      flex-wrap: wrap;
     }
 
   }

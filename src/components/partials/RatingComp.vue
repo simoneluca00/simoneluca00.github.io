@@ -1,13 +1,12 @@
 <template>
-    <div>
-        <p class="missingReviews" v-if="ratingNumber == 0" :style="(ratingNumber == 0) ? 'margin-bottom: 0;' : ''">
-            Nessuna recensione</p>
-        <div id="vote" :style="(ratingNumber == 0) ? 'margin-top: 5px;' : ''">
-            <div>
-                <font-awesome-icon icon="fa-solid fa-star" v-for="(element,index) in ratingNumber" :key="index" />
-            </div>
-            <span>{{ratingNumber}}/5</span>
+    <div id="vote">
+        <p class="missingReviews" v-if="ratingNumber == 0">
+            Nessuna recensione
+        </p>
+        <div>
+            <font-awesome-icon icon="fa-solid fa-star" v-for="(element,index) in ratingNumber" :key="index" />
         </div>
+        <span>{{ratingNumber}}/5</span>
     </div>
 </template>
 
@@ -33,6 +32,7 @@
     #vote {
         @include compileFlex(center, center);
         flex-direction: column;
+        margin: 20px 0;
 
         .fa-star {
             color: #ffd700;
@@ -40,16 +40,15 @@
         }
 
         span {
-            margin-left: 7px;
+            margin-top: 5px;
             font-size: 0.9em;
             letter-spacing: 0.2em;
         }
     }
 
-    #vote,
-    .missingReviews {
-        margin: 20px 0;
-    }
+    // #vote,
+    // .missingReviews {
+    // }
 
     .missingReviews {
         text-decoration: underline;

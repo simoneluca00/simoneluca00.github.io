@@ -2,8 +2,11 @@
   <header>
     <LogoComp />
 
-    <div id="search">
-      <form action="">
+    <div id="searchCont">
+
+      <form action="" class="search">
+        <!-- @keydown.enter.prevent="$emit( 'search', inputText )" : poteva essere inserito nell'input 
+        (emit identico a quello del button): il "keyup" non accetta il prevent -->
         <input type="text" class="searchInput" placeholder="Cerca il tuo film preferito!" v-model.trim="inputText">
 
         <button type="submit" class="btnSearch" @click.prevent="$emit( 'search', inputText )">
@@ -41,37 +44,45 @@
   header {
     @include compileFlex (space-between, center);
 
-    background-color: #000;
+    background-color: $black;
     padding: 0 25px;
     height: 10vh;
 
-    div#search {
+
+
+    div#searchCont {
+      @include compileFlex (space-around, center);
       flex-basis: 25%;
 
-      form {
+      form.search {
         width: 100%;
         @include compileFlex (initial, initial);
 
         .searchInput {
-          width: 80%;
+          width: 100%;
           outline: none;
           border: none;
-          border-color: $primary-red;
+          border-color: $primary-logo;
           padding-left: 10px;
           // border-radius: 3px;
         }
 
         .btnSearch {
           padding: 7px 20px;
-          color: $light-text;
-          letter-spacing: 0.03em;
-          background-color: $primary-red;
+          background-color: $primary-logo;
           outline: none;
           border: none;
+          border-left: 1px solid $black;
+          cursor: pointer;
 
-          &:hover {
-            cursor: pointer;
-            opacity: 0.9;
+          &:hover .fa-magnifying-glass {
+            opacity: 0.3;
+            transform: scale(1.1);
+          }
+
+          .fa-magnifying-glass {
+            color: $black;
+
           }
         }
       }
