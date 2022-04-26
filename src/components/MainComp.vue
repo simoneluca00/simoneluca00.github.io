@@ -1,8 +1,8 @@
 <template>
   <main>
-    <FilmsComp :films="films" :foundResults="foundResults" :filmGenres="filmGenres" />
+    <FilmsComp :films="films" :foundResults="foundResults" :filmGenres="filmGenres" :tvSeriesGenres="tvSeriesGenres"/>
 
-    <SeriesComp :tvSeries="tvSeries" :foundResults="foundResults" :tvSeriesGenres="tvSeriesGenres" />
+    <SeriesComp :tvSeries="tvSeries" :foundResults="foundResults" :tvSeriesGenres="tvSeriesGenres" :filmGenres="filmGenres"/>
   </main>
 </template>
 

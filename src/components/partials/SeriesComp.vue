@@ -10,7 +10,7 @@
         </div>
 
         <div class="selectGenreCont">
-            <SelectGenre :checkedSeriesGenres="checkedSeriesGenres" @selectGenre="selectedGenre"
+            <SelectGenre @selectGenre="selectedGenre"
                 v-for="(tvSeriesGenre, i) in tvSeriesGenres" :key="i" :id="tvSeriesGenre.id"
                 :genre="tvSeriesGenre.name" />
         </div>
@@ -18,7 +18,7 @@
         <div class="containerCards">
             <CardComp v-for="item in filteredSeries" :key="item.id" :title="item.name"
                 :language="item.original_language" :vote="item.vote_average" :overview="item.overview"
-                :poster="item.poster_path" :genresList="item.genre_ids" />
+                :poster="item.poster_path" :genresList="item.genre_ids" :tvSeriesGenres="tvSeriesGenres" :filmGenres="filmGenres"/>
         </div>
     </div>
 </template>
@@ -38,12 +38,12 @@
         props: {
             tvSeries: Array,
             tvSeriesGenres: Array,
+            filmGenres: Array,
             foundResults: Boolean,
         },
 
         data() {
             return {
-                checkedSeriesGenres: [],
                 tvSeriesGenre: "",
             }
         },
@@ -64,6 +64,7 @@
         methods: {
             selectedGenre(text) {
                 this.tvSeriesGenre = text;
+                
                 if (this.tvSeriesGenre.length > 0 && !this.checkedSeriesGenres.includes(this.tvSeriesGenre[0])) {
                         this.checkedSeriesGenres.push(this.tvSeriesGenre[0])
                 } else if (this.checkedSeriesGenres.indexOf(this.tvSeriesGenre[0]) !== -1){

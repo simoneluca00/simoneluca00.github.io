@@ -10,8 +10,6 @@
     export default {
         name: 'SelectGenre',
         props: {
-            checkedFilmsGenres: Array,
-            checkedSeriesGenres: Array,
             id: Number,
             genre: String,
         },

@@ -28,9 +28,17 @@
                 <p class="overview">
                     {{overview}}
                 </p>
-                <p class="overview">
-                    {{genresList}}
-                </p>
+                <!-- <ul class="singleCardGenre">
+                    <li v-for="(genre,i) in associateSeriesGenres" :key="i">{{genre.name}}</li>
+                </ul> -->
+                <div class="containerGenres">
+                    <h4>Generi</h4>
+                    <ul class="singleCardGenre">
+                        <li v-for="(genre,i) in associateFilmsGenres" :key="i">{{genre.name}}
+                            <span v-if="i + 1 < associateFilmsGenres.length">-</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -53,12 +61,32 @@
             overview: String,
             poster: String,
             genresList: Array,
+            tvSeriesGenres: Array,
+            filmGenres: Array,
             foundResults: Boolean,
         },
 
         computed: {
-    
+            removeDuplicateFunction(){
+                var uniqueListGenres = this.filmGenres.concat(this.tvSeriesGenres.filter(el => this.filmGenres.every(item => item.id != el.id)));
+
+                return uniqueListGenres
+            },
+            
+            associateFilmsGenres() {
+
+                return this.removeDuplicateFunction.filter((el) => this.genresList.includes(el.id))
+            },
+
+            // uniqueListGenres() {
+            //     return this.filmGenres.concat(this.tvSeriesGenres)
+            // },
+
         },
+
+        methods: {
+
+        }
 
     }
 </script>
@@ -69,9 +97,9 @@
     @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400;500;600;700&display=swap');
 
     .border-card {
-        border: 2px solid; 
+        border: 2px solid;
         border-image-slice: 1;
-        border-image-source: $br-cards;  
+        border-image-source: $br-cards;
     }
 
     .flip-card {
@@ -147,6 +175,32 @@
             text-align: start;
             line-height: 1.4em;
         }
+
+        .containerGenres {
+            margin-top: 10px;
+            padding-top: 5px;
+            border-top: 1px solid $light-text;
+
+            h4 {
+                margin-bottom: 10px
+            }
+
+            .singleCardGenre {
+                @include compileFlex(center, center);
+                flex-wrap: wrap;
+                list-style-type: none;
+    
+                li {
+                    width: auto;
+                    margin-bottom: 5px;
+
+                    span {
+                        margin: 0 5px 0 2px;
+                    }
+                }
+            }
+        }
+
     }
 
     .flip-card-back::-webkit-scrollbar {

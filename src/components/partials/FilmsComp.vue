@@ -10,16 +10,15 @@
         </div>
 
         <div class="selectGenreCont">
-            <SelectGenre :checkedFilmsGenres="checkedFilmsGenres" @selectGenre="selectedGenre"
+            <SelectGenre @selectGenre="selectedGenre"
                 v-for="(filmGenre, i) in filmGenres" :key="i" :id="filmGenre.id" :genre="filmGenre.name" />
-            <p class="test">I generi selezionati sono: {{checkedFilmsGenres.join(', ')}}</p>
         </div>
 
 
         <div class="containerCards">
             <CardComp v-for="film in filteredFilms" :key="film.id" :title="film.title"
                 :language="film.original_language" :vote="film.vote_average" :overview="film.overview"
-                :poster="film.poster_path" :genresList="film.genre_ids" />
+                :poster="film.poster_path" :genresList="film.genre_ids" :filmGenres="filmGenres" :tvSeriesGenres="tvSeriesGenres"/>
         </div>
     </div>
 </template>
@@ -39,12 +38,12 @@
         props: {
             films: Array,
             filmGenres: Array,
+            tvSeriesGenres: Array,
             foundResults: Boolean,
         },
 
         data() {
             return {
-                checkedFilmsGenres: [],
                 filmGenre: "",
 
             }
@@ -73,7 +72,6 @@
                 } else if (this.checkedFilmsGenres.indexOf(this.filmGenre[0]) !== -1) {
                     this.checkedFilmsGenres.slice(this.checkedFilmsGenres.indexOf(this.filmGenre[0]), 1)
                 }
-                console.log(this.checkedFilmsGenres.indexOf(this.filmGenre[0]))
             },
 
         }
