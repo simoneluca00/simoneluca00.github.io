@@ -25,12 +25,11 @@
 
                 <RatingComp :vote="vote" />
 
-                <p class="overview">
+                <p class="overview text-start">
                     {{overview}}
                 </p>
-                <!-- <ul class="singleCardGenre">
-                    <li v-for="(genre,i) in associateSeriesGenres" :key="i">{{genre.name}}</li>
-                </ul> -->
+
+                <div class="divisor"></div>
                 <div class="containerGenres">
                     <h4>Generi</h4>
                     <ul class="singleCardGenre">
@@ -45,7 +44,7 @@
 </template>
 
 <script>
-    import RatingComp from './RatingComp.vue';
+    import RatingComp from './childComps/RatingComp.vue';
 
     export default {
         name: 'CardComp',
@@ -68,14 +67,11 @@
 
         computed: {
             removeDuplicateFunction(){
-                var uniqueListGenres = this.filmGenres.concat(this.tvSeriesGenres.filter(el => this.filmGenres.every(item => item.id != el.id)));
-                return uniqueListGenres
+                return this.filmGenres.concat(this.tvSeriesGenres.filter(el => this.filmGenres.every(item => item.id != el.id))); 
             },
             
             associateFilmsGenres() {
-                var filteredList = this.removeDuplicateFunction.filter((el) => this.genresList.includes(el.id));
-                this.$emit('onGenreChange', filteredList);
-                return filteredList
+                return this.removeDuplicateFunction.filter((el) => this.genresList.includes(el.id));
             },
 
         },
@@ -96,6 +92,10 @@
         border: 2px solid;
         border-image-slice: 1;
         border-image-source: $br-cards;
+    }
+
+    .text-start {
+        text-align: start;
     }
 
     .flip-card {
@@ -149,7 +149,7 @@
         background-color: $black;
         color: $light-text;
         overflow-y: auto;
-        padding: 20px 10px;
+        padding: 20px 0 20px 10px;
         transform: rotateY(180deg);
 
         img {
@@ -167,28 +167,31 @@
         }
 
         .overview {
-            padding: 0 7px 0 20px;
-            text-align: start;
+            margin: 0 5px 10px 0;
             line-height: 1.4em;
+        }
+
+        .divisor {
+            width: 98%;
+            border-top: 2px solid $light-text;
         }
 
         .containerGenres {
             margin-top: 10px;
-            padding-top: 5px;
-            border-top: 1px solid $light-text;
 
             h4 {
                 margin-bottom: 10px
             }
 
             .singleCardGenre {
-                @include compileFlex(center, center);
+                @include compileFlex(flex-start, center);
                 flex-wrap: wrap;
                 list-style-type: none;
     
                 li {
                     width: auto;
                     margin-bottom: 5px;
+                    font-size: 0.9em;
 
                     span {
                         margin: 0 5px 0 2px;

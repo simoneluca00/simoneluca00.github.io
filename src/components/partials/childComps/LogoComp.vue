@@ -15,7 +15,7 @@
 
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
-  @import '../../style/global.scss';
+  @import '../../../style/global.scss';
 
   #logo {
     a {

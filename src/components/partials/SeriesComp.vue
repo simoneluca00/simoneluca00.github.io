@@ -10,10 +10,7 @@
             </span>
         </div>
 
-        <div class="selectGenreCont">
-            <SelectGenre @selectGenre="selectedGenre" v-for="(tvSeriesGenre, i) in tvSeriesGenres" :key="i"
-                :id="tvSeriesGenre.id" :genre="tvSeriesGenre.name" />
-        </div>
+        <CheckSeriesComp @selectGenre="selectedGenre" :tvSeriesGenres="tvSeriesGenres" />
 
         <div v-if="foundResults && filteredSeries.length == 0">
             <h2 class="noGenreResults">Non sono presenti Serie Tv corrispondenti al genere selezionato</h2>
@@ -30,13 +27,13 @@
 
 <script>
     import CardComp from './CardComp.vue'
-    import SelectGenre from './SelectGenre.vue'
+    import CheckSeriesComp from './childComps/CheckSeriesComp.vue'
 
     export default {
         name: 'SeriesComp',
         components: {
             CardComp,
-            SelectGenre,
+            CheckSeriesComp,
 
         },
 
@@ -50,7 +47,6 @@
         data() {
             return {
                 tvSeriesGenre: "",
-                checkedSeriesGenres: [],
             }
         },
 
@@ -60,8 +56,8 @@
                     return this.tvSeries
                 }
                 return this.tvSeries.filter(element => {
-                    return element.genre_ids
-                        .includes(this.tvSeriesGenre[0])
+                    return this.tvSeriesGenre
+                        .every((item)=> element.genre_ids.includes(item))
                 })
             },
 
@@ -70,12 +66,6 @@
         methods: {
             selectedGenre(text) {
                 this.tvSeriesGenre = text;
-
-                // if (this.tvSeriesGenre.length > 0 && !this.checkedSeriesGenres.includes(this.tvSeriesGenre[0])) {
-                //     this.checkedSeriesGenres.push(this.tvSeriesGenre[0])
-                // } else if (this.checkedSeriesGenres.indexOf(this.tvSeriesGenre[0]) !== -1) {
-                //     this.checkedSeriesGenres.slice(this.checkedSeriesGenres.indexOf(this.tvSeriesGenre[0]), 1)
-                // }
             }
         }
     }
@@ -86,11 +76,7 @@
 
     #tvSeries {
         margin-top: 100px;
-        min-height: 70vh;
-
-        .singleGenre {
-            width: calc(100% / 8);
-        }
+        min-height: 50vh;
 
         h2.noGenreResults {
             color: $black;

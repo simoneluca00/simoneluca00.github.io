@@ -9,10 +9,7 @@
             </span>
         </div>
 
-        <div class="selectGenreCont">
-            <SelectGenre @selectGenre="selectedGenre"
-                v-for="(filmGenre, i) in filmGenres" :key="i" :id="filmGenre.id" :genre="filmGenre.name" />
-        </div>
+        <CheckFilmComp @selectGenre="selectedGenre" :filmGenres="filmGenres" />
 
         <div v-if="foundResults && filteredFilms.length == 0">
             <h2 class="noGenreResults">Non sono presenti Film corrispondenti al genere selezionato</h2>
@@ -29,13 +26,13 @@
 
 <script>
     import CardComp from './CardComp.vue'
-    import SelectGenre from './SelectGenre.vue'
+    import CheckFilmComp from './childComps/CheckFilmComp.vue'
 
     export default {
         name: 'FilmsComp',
         components: {
             CardComp,
-            SelectGenre,
+            CheckFilmComp,
 
         },
 
@@ -49,7 +46,6 @@
         data() {
             return {
                 filmGenre: "",
-                // checkedFilmsGenres: [],
             }
         },
 
@@ -59,9 +55,11 @@
                 if (this.filmGenre == "") {
                     return this.films
                 }
-                return this.films.filter(element => {
-                    return element.genre_ids
-                        .includes(this.filmGenre[0])
+
+                return this.films.filter((element) => {
+                    return this.filmGenre
+                        .every((item)=> element.genre_ids.includes(item))
+
                 })
             },
 
@@ -70,12 +68,6 @@
         methods: {
             selectedGenre(text) {
                 this.filmGenre = text;
-
-                // if (this.filmGenre.length > 0 && !this.checkedFilmsGenres.includes(this.filmGenre[0])) {
-                //     this.checkedFilmsGenres.push(this.filmGenre[0])
-                // } else if (this.checkedFilmsGenres.indexOf(this.filmGenre[0]) !== -1) {
-                //     this.checkedFilmsGenres.slice(this.checkedFilmsGenres.indexOf(this.filmGenre[0]), 1)
-                // }
             },
 
         }
@@ -88,11 +80,7 @@
     @import '../../style/global.scss';
 
     #films {
-        min-height: 70vh;
-
-        .singleGenre {
-            width: 10%;
-        }
+        min-height: 50vh;
 
         h2.noGenreResults {
             color: #fff;

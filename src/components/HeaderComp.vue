@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import LogoComp from './partials/LogoComp.vue'
+  import LogoComp from './partials/childComps/LogoComp.vue'
 
   export default {
     name: 'HeaderComp',
