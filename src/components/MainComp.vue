@@ -82,6 +82,11 @@
       flex-wrap: wrap;
     }
 
+    h2.noGenreResults {
+      text-align: center;
+      margin-top: 100px;
+    }
+
   }
 
   @media screen and (max-width: 490px) {

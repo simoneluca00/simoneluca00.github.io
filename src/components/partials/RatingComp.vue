@@ -5,6 +5,7 @@
         </p>
         <div>
             <font-awesome-icon icon="fa-solid fa-star" v-for="(element,index) in ratingNumber" :key="index" />
+            <font-awesome-icon icon="fa-regular fa-star" v-for="(element,index) in (5 - ratingNumber)" :key="'a'+index" />
         </div>
         <span>{{ratingNumber}}/5</span>
     </div>

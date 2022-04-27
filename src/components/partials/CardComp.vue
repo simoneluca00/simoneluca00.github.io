@@ -69,18 +69,14 @@
         computed: {
             removeDuplicateFunction(){
                 var uniqueListGenres = this.filmGenres.concat(this.tvSeriesGenres.filter(el => this.filmGenres.every(item => item.id != el.id)));
-
                 return uniqueListGenres
             },
             
             associateFilmsGenres() {
-
-                return this.removeDuplicateFunction.filter((el) => this.genresList.includes(el.id))
+                var filteredList = this.removeDuplicateFunction.filter((el) => this.genresList.includes(el.id));
+                this.$emit('onGenreChange', filteredList);
+                return filteredList
             },
-
-            // uniqueListGenres() {
-            //     return this.filmGenres.concat(this.tvSeriesGenres)
-            // },
 
         },
 

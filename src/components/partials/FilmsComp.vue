@@ -2,9 +2,9 @@
     <div id="films">
         <div class="sectionTitle" v-if="foundResults && films.length > 0">
             <h1>film</h1>
-            <span>({{films.length}}
-                <span class="results" v-if="films.length == 1">risultato</span>
-                <span class="results" v-else-if="films.length == 0 || films.length > 1">risultati</span>
+            <span>({{filteredFilms.length}}
+                <span class="results" v-if="filteredFilms.length == 1">risultato</span>
+                <span class="results" v-else-if="filteredFilms.length == 0 || filteredFilms.length > 1">risultati</span>
                 )
             </span>
         </div>
@@ -14,11 +14,15 @@
                 v-for="(filmGenre, i) in filmGenres" :key="i" :id="filmGenre.id" :genre="filmGenre.name" />
         </div>
 
+        <div v-if="foundResults && filteredFilms.length == 0">
+            <h2 class="noGenreResults">Non sono presenti Film corrispondenti al genere selezionato</h2>
+        </div>
 
         <div class="containerCards">
             <CardComp v-for="film in filteredFilms" :key="film.id" :title="film.title"
                 :language="film.original_language" :vote="film.vote_average" :overview="film.overview"
-                :poster="film.poster_path" :genresList="film.genre_ids" :filmGenres="filmGenres" :tvSeriesGenres="tvSeriesGenres"/>
+                :poster="film.poster_path" :genresList="film.genre_ids" :filmGenres="filmGenres" 
+                :tvSeriesGenres="tvSeriesGenres"/>
         </div>
     </div>
 </template>
@@ -45,7 +49,7 @@
         data() {
             return {
                 filmGenre: "",
-
+                // checkedFilmsGenres: [],
             }
         },
 
@@ -67,11 +71,11 @@
             selectedGenre(text) {
                 this.filmGenre = text;
 
-                if (this.filmGenre.length > 0 && !this.checkedFilmsGenres.includes(this.filmGenre[0])) {
-                    this.checkedFilmsGenres.push(this.filmGenre[0])
-                } else if (this.checkedFilmsGenres.indexOf(this.filmGenre[0]) !== -1) {
-                    this.checkedFilmsGenres.slice(this.checkedFilmsGenres.indexOf(this.filmGenre[0]), 1)
-                }
+                // if (this.filmGenre.length > 0 && !this.checkedFilmsGenres.includes(this.filmGenre[0])) {
+                //     this.checkedFilmsGenres.push(this.filmGenre[0])
+                // } else if (this.checkedFilmsGenres.indexOf(this.filmGenre[0]) !== -1) {
+                //     this.checkedFilmsGenres.slice(this.checkedFilmsGenres.indexOf(this.filmGenre[0]), 1)
+                // }
             },
 
         }
@@ -83,12 +87,16 @@
 <style lang="scss">
     @import '../../style/global.scss';
 
-    .singleGenre {
-        width: 10%;
+    #films {
+        min-height: 70vh;
+
+        .singleGenre {
+            width: 10%;
+        }
+
+        h2.noGenreResults {
+            color: #fff;
+        }
     }
 
-    .test {
-        color: $light-text;
-        margin-bottom: 20px;
-    }
 </style>

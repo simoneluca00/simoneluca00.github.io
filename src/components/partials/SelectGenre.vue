@@ -18,10 +18,6 @@
                 checkedGenre: [],
             };
         },
-
-        computed: {
-
-        },
     };
 </script>
 
