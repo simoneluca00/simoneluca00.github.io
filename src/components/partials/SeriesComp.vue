@@ -17,22 +17,22 @@
         </div>
 
         <div class="containerCards">
-            <CardComp v-for="item in filteredSeries" :key="item.id" :title="item.name"
+            <CardSeries v-for="item in filteredSeries" :key="item.id" :title="item.name"
                 :language="item.original_language" :vote="item.vote_average" :overview="item.overview"
                 :poster="item.poster_path" :genresList="item.genre_ids" :tvSeriesGenres="tvSeriesGenres"
-                :filmGenres="filmGenres" />
+                :filmGenres="filmGenres" :seriesId="item.id" :propsApiKey="propsApiKey"/>
         </div>
     </div>
 </template>
 
 <script>
-    import CardComp from './CardComp.vue'
+    import CardSeries from './CardSeries.vue'
     import CheckSeriesComp from './childComps/CheckSeriesComp.vue'
 
     export default {
         name: 'SeriesComp',
         components: {
-            CardComp,
+            CardSeries,
             CheckSeriesComp,
 
         },
@@ -42,6 +42,7 @@
             tvSeriesGenres: Array,
             filmGenres: Array,
             foundResults: Boolean,
+            propsApiKey: String,
         },
 
         data() {

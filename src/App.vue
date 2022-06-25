@@ -2,7 +2,7 @@
   <div id="app">
     <HeaderComp @search="searchingElement" />
     <MainComp :films="films" :tvSeries="tvSeries" :filmGenres="filmGenres" :tvSeriesGenres="tvSeriesGenres"
-      :foundResults="foundResults" />
+      :foundResults="foundResults" :propsApiKey="apiKey" />
   </div>
 </template>
 
@@ -83,7 +83,6 @@
       tvSeriesGenresRequest() {
         return axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=${this.apiKey}`)
       },
-
     },
 
   }
